@@ -2,16 +2,15 @@
 #include <fstream>
 
 
-static void foo()
-{
-	system("leaks -q losers");
-}
 
 struct stContent
 {
 	std::string filename;
 	std::string s1;
 	std::string s2;
+
+	stContent(const char* f, const char* s1, const char* s2) : filename(f), s1(s1), s2(s2) {}
+
 };
 
 static void Display(std::string message)
@@ -22,7 +21,7 @@ static void Display(std::string message)
 static int ft_perror(std::string message)
 {
 	std::cerr << message << std::endl;
-	return EXIT_FAILURE;
+	return 1;
 }
 
 
@@ -86,24 +85,20 @@ static int FileConfiguration(stContent &content)
 	infile.close();
 
 	// while (1);  lsof -p <pid> 
-	return EXIT_SUCCESS;
+	return 0;
 }
 
 int main(int ac, char **av)
 {
-	atexit(foo);
 
 	if (ac != 4)
 	{
 		Display("Invalid Arguments : ./losers filename s1 s2");
-		return EXIT_FAILURE;
+		return 1;
 	}
 
-	stContent config;
 
-	config.filename = av[1];
-	config.s1 = av[2];
-	config.s2 = av[3];
+	stContent config = stContent(av[1], av[2], av[3]);
 
 	return FileConfiguration(config);
 }
