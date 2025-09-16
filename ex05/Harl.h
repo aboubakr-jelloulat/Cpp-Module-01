@@ -14,15 +14,23 @@ public :
 
 };
 
-typedef void (Harl::*HarlMethod)();  // pointer to Harl method
+// HarlMethod is now a type name for a pointer to any member function of class Harl
 
-	// (Harl::*) — pointer-to-member-of-class Harl : This means the pointer refers to a method that belongs to class Harl, not to a free function.
-	//() — the parameter list: here it means no parameters.
-	//HarlMethod — the alias (type name) we create for this kind of pointer.
+typedef void (Harl::*HarlMethod)(); 
+
+
 
 typedef struct s_action
 {
     HarlMethod   fn;      // pointer to the method
-    std::string  name;    // name like "DEBUG"
+    std::string  name;
 } t_action;
+
+
+/*
+	(Harl::*) — pointer-to-member-of-class Harl : This means the pointer refers to a method that belongs to class Harl, not to a free function.
+	HarlMethod — the alias (type name) we create for this kind of pointer.
+
+
+*/
 

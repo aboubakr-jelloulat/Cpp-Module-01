@@ -13,7 +13,6 @@ int main()
 	h.complain("ERROR");
 
 	h.complain("BOOM");
-	h.complain("");
 
 	return 0;
 }
