@@ -12,7 +12,7 @@ void Harl::error() {std::cout << "ERROR" << std::endl; }
 
 // https://www.learncpp.com/cpp-tutorial/function-pointers
 
-// Array of function pointers
+
 
 void Harl::complain(std::string level)
 {
