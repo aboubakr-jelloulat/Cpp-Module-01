@@ -6,7 +6,7 @@
 			https://codefinity.com/blog/References-vs-Pointers-in-C-plus-plus
 			https://www3.ntu.edu.sg/home/ehchua/programming/cpp/cp4_PointerReference.html
 
-
+        Here’s my blog about Pointers vs References in C++ : https://aboubakr-jelloulat.github.io/posts/Refrences-vs-Pointers-in-C++/
 
 	*/
 
