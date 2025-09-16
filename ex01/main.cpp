@@ -7,30 +7,43 @@ int main(void)
     atexit(leaks);
 
 
-	// *** Test 1 ***
 
-    //Zombie *horde;
+	std::cout << "Test 1 \n" << std::endl;
 
-    // horde = zombieHorde(5, "Baker");
+	{
+		Zombie *horde;
+
+		horde = zombieHorde(5, "Baker");
+		
+		for (int i = 0; i < 5; i++)
+			horde[i].announce();
+
+		delete[] horde;
+
+	}
     
-    // for (int i = 0; i < 5; i++)
-    //     horde[i].announce();
+	std::cout << "\n\nTest 2 \n" << std::endl;
 
-    // delete[] horde;
+	{
+
+		Zombie *horde = zombieHorde(1, "A");
+		horde[0].announce();
+
+		delete[] horde;
+
+		std::cout << std::endl;
+
+		Zombie *horde2 = zombieHorde(2, "B");
+		horde2[0].announce();
+		horde2[1].announce();
+
+		delete[] horde2;
 
 
-	// *** Test 2 *** 
+	}
 
-	Zombie *horde1 = zombieHorde(1, "A");
-	horde1[0].announce();
 
-	delete[] horde1;
 
-	Zombie *horde2 = zombieHorde(2, "B");
-	horde2[0].announce();
-	horde2[1].announce();
-
-	delete[] horde2;
     
     return (0);
 }

@@ -1,5 +1,9 @@
 #include "Zombie.h"
 
+/*
+	returning a dynamically allocated array of Zombie objects
+*/
+
 Zombie* zombieHorde( int N, std::string name )
 {
     Zombie    *zombies = new Zombie[N];

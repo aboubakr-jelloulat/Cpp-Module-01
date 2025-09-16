@@ -1,0 +1,19 @@
+#include <iostream>
+#include "Harl.h"
+
+
+
+int main()
+{
+	Harl h;
+
+	h.complain("DEBUG");
+	h.complain("INFO");
+	h.complain("WARNING");
+	h.complain("ERROR");
+
+	h.complain("BOOM");
+	h.complain("");
+
+	return 0;
+}

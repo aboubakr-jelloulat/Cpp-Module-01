@@ -3,7 +3,7 @@ CC      := c++
 CFLAGS  := -Wall -Wextra -Werror -std=c++98
 
 SRCDIR := .
-OBJDIR := obj
+OBJDIR := build
 SRCS := $(wildcard $(SRCDIR)/*.cpp)
 OBJS := $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
