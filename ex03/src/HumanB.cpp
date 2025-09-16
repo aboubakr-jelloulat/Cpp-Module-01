@@ -1,10 +1,10 @@
 #include <iostream>
 #include "../includes/HumanB.h"
 
-HumanB::HumanB(std::string name) {this->name = name;}
+HumanB::HumanB(std::string name) : name(name), weapon(NULL) {}
  
 
-void	HumanB::setWeapon(Weapon &weapon) {this->weapon = &weapon;}
+void	HumanB::setWeapon(Weapon &weapon)  {this->weapon = &weapon;}
 
 
 void	HumanB::attack()
