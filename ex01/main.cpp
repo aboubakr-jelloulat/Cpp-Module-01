@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include "Zombie.h"
 
 void leaks(void) {system("leaks -q zombie_horde");}
