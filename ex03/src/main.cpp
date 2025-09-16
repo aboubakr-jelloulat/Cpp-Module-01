@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include "../includes/HumanA.h"
 #include "../includes/HumanB.h"
 #include "../includes/Weapon.h"
