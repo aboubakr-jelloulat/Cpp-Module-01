@@ -10,7 +10,8 @@ OBJS := $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@echo Created executable \'$(NAME)\' 
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp Zombie.h Makefile | $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@

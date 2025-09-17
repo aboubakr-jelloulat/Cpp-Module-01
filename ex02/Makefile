@@ -11,6 +11,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@echo Created executable \'$(NAME)\' 
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp  Makefile | $(OBJDIR)
 	@$(CC) $(CFLAGS) -c $< -o $@

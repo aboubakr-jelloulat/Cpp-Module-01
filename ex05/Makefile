@@ -1,43 +1,30 @@
-NAME := Harl
+NAME    := Harl
+CC      := c++
+CFLAGS  := -Wall -Wextra -Werror -std=c++98
 
-CXX := c++
-
-CXXFLAGS := -Wall -Wextra -Werror -std=c++98
-
-SRCS := $(wildcard *.cpp)
-
+SRCDIR := .
 OBJDIR := build
-
-OBJFILES := $(addprefix $(OBJDIR)/,$(notdir $(SRCS:.cpp=.o)))
-
-.PHONY: all clean fclean re
+SRCS := $(wildcard $(SRCDIR)/*.cpp)
+OBJS := $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJFILES)
-	@$(CXX) $(CXXFLAGS) $(OBJFILES) -o $(NAME)
+$(NAME): $(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo Created executable \'$(NAME)\'
 
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp Makefile Harl.h | $(OBJDIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJDIR):
+	@mkdir -p $(OBJDIR)
+
 clean:
-	@$(RM) -rf $(OBJDIR)
-	@echo Deleted \'$(OBJDIR)/\'
+	@rm -rf $(OBJDIR)
 
 fclean: clean
-	@$(RM) -f $(NAME)
-	@echo Deleted executable \'$(NAME)\'
+	@rm -f $(NAME)
 
 re: fclean all
 
-DEPENDS := $(patsubst %.o,%.d,$(OBJFILES))
-
--include $(DEPENDS)
-
-$(OBJDIR)/%.o : %.cpp Makefile
-	@mkdir -p $(@D)
-	@$(call tidy_compilation,$(CXX) $(CXXFLAGS) -MMD -MP -c $< -o $@)
-
-define tidy_compilation
-	@printf "Compiling %s...\n" "$<"
-	@$(1)
-	@printf "\e[A\e[K"
-endef
+.PHONY: all clean fclean re

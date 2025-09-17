@@ -1,47 +1,30 @@
-NAME := violence
+NAME    := violence
+CC      := c++
+CFLAGS  := -Wall -Wextra -Werror -std=c++98
 
-CXX := c++
-CXXFLAGS := -Wall -Wextra -Werror -std=c++98
-
-SRC_DIR := src
-INCLUDE_DIR := includes
-
-SRCS := $(wildcard $(SRC_DIR)/*.cpp)
-
+SRCDIR := src
 OBJDIR := build
-OBJFILES := $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.cpp=.o)))
-DEPENDS := $(OBJFILES:.o=.d)
-
-.PHONY: all clean fclean re
+SRCS := $(wildcard $(SRCDIR)/*.cpp)
+OBJS := $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJFILES)
-	@$(CXX) $(CXXFLAGS) $(OBJFILES) -o $(NAME)
+$(NAME): $(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo Created executable \'$(NAME)\'
 
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp includes/*.h Makefile | $(OBJDIR)
+	$(CC) $(CFLAGS) -Iincludes -c $< -o $@
+
+$(OBJDIR):
+	@mkdir -p $(OBJDIR)
+
 clean:
-	@$(RM) -rf $(OBJDIR)
-	@echo Deleted \'obj/\'
+	@rm -rf $(OBJDIR)
 
 fclean: clean
-	@$(RM) -f $(NAME)
-	@echo Deleted executable \'$(NAME)\'
+	@rm -f $(NAME)
 
 re: fclean all
 
--include $(DEPENDS) 
-
-$(OBJDIR)/%.o: $(SRC_DIR)/%.cpp Makefile | $(OBJDIR)
-	@mkdir -p $(@D)
-	@$(call tidy_compilation,$(CXX) $(CXXFLAGS) -I$(INCLUDE_DIR) -MMD -MP -c $< -o $@)
-
-
-$(OBJDIR):
-	@mkdir -p $@
-
-define tidy_compilation
-	@printf "Compiling %s...\n" "$<"
-	@$(1)
-	@printf "\e[A\e[K"
-endef
+.PHONY: all clean fclean re
