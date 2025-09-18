@@ -22,9 +22,9 @@ int main(void)
     
     std::cout << "	MEMORY ADDRESSES \n" << std::endl;
 
-    std::cout << "Address of string	: " << &string << std::endl;
-    std::cout << "Address in stringPTR	: " << stringPTR << std::endl;
-    std::cout << "Address of stringREF	: " << &stringREF << std::endl;
+    std::cout << "The memory address of the string variable	: " << &string << std::endl;
+    std::cout << "The memory address held by stringPTR 		: " << stringPTR << std::endl;
+    std::cout << "The memory address held by stringREF		: " << &stringREF << std::endl;
     
    
     
